@@ -1,0 +1,74 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    static int[][] dir = {
+            { -1, -2, -2, -1, 2, 1, 1, 2 },
+            { 2, 1, -1, -2, -1, -2, 2, 1}
+    };
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+
+        int T = Integer.parseInt(br.readLine());
+
+        for(int t=0; t<T; t++) {
+            int N = Integer.parseInt(br.readLine());
+
+            st = new StringTokenizer(br.readLine());
+            int src_r = Integer.parseInt(st.nextToken());
+            int src_c = Integer.parseInt(st.nextToken());
+
+            st = new StringTokenizer(br.readLine());
+            int dst_r = Integer.parseInt(st.nextToken());
+            int dst_c = Integer.parseInt(st.nextToken());
+
+
+            int answer=BFS(N, src_r, src_c, dst_r, dst_c);
+            System.out.println(answer);
+        }
+
+    }
+
+    static int BFS(int N, int src_r, int src_c, int dst_r, int dst_c) {
+        Deque<Integer[]> q = new ArrayDeque<>();
+        boolean[][] visit = new boolean[N][N];
+        int answer=0;
+
+        q.add(new Integer[]{src_r, src_c});
+        visit[src_r][src_c] = true;
+
+        A:while(!q.isEmpty()) {
+            int size = q.size();
+
+            for(int i=0; i<size; i++) {
+                Integer[] buf = q.poll();
+
+                int r = buf[0];
+                int c = buf[1];
+
+                if(r==dst_r && c==dst_c) break A;
+
+                for (int d = 0; d < 8; d++) {
+                    int nr = r + dir[0][d];
+                    int nc = c + dir[1][d];
+
+                    if (nr < 0 || nr >= N || nc < 0 || nc >= N) continue;
+                    if(visit[nr][nc]) continue;
+
+                    q.add(new Integer[]{nr, nc});
+                    visit[nr][nc] = true;
+
+                }
+            }
+            answer++;
+        }
+        return answer;
+    }
+}
