@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class BOJ14889_스타트와링크 {
+public class 스타트와링크 {
 
     static int size;
     static int result;
