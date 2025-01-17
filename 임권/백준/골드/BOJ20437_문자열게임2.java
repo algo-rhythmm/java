@@ -43,7 +43,7 @@ public class BOJ20437_문자열게임2 {
                     if(W[idx--] == W[i]) counter++;
                 }
 
-                if(count[W[i] - 'a'] - counter == K - 1 && idx + 1 < W.length && W[i] == W[idx + 1]) longest = Math.max(longest, idx - i + 2);  // K - 1인 경우는 정답보다 인덱스가 1만큼 앞이므로 보충충
+                if(count[W[i] - 'a'] - counter == K - 1 && idx + 1 < W.length && W[i] == W[idx + 1]) longest = Math.max(longest, idx - i + 2);  // K - 1인 경우는 정답보다 인덱스가 1만큼 앞이므로 보충
 
                 count[W[i] - 'a']--;
             }
