@@ -25,7 +25,7 @@ public class BOJ22251_빌런호석 {
         P = Integer.parseInt(st.nextToken());
         X = Integer.parseInt(st.nextToken());
 
-        System.out.println(sim());
+        System.out.println(sim() - 1);
     }
 
     static int sim() {
@@ -35,7 +35,7 @@ public class BOJ22251_빌런호석 {
         
         for(int i = 1; i <= N; ++i) {
             int count = countChange(cur, correct);
-            if(count > 0 && count <= P) {
+            if(count <= P) {
                 ++result;
             }
             increment(cur);
